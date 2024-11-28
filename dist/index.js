@@ -1,0 +1,33 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const customer_1 = __importDefault(require("./routes/customer"));
+const user_1 = __importDefault(require("./routes/user"));
+const shop_1 = __importDefault(require("./routes/shop"));
+const supplier_1 = __importDefault(require("./routes/supplier"));
+const login_1 = __importDefault(require("./routes/login"));
+const unit_1 = __importDefault(require("./routes/unit"));
+const brand_1 = __importDefault(require("./routes/brand"));
+const category_1 = __importDefault(require("./routes/category"));
+const product_1 = __importDefault(require("./routes/product"));
+require("dotenv").config();
+const cors = require("cors");
+const app = (0, express_1.default)();
+app.use(cors());
+const PORT = process.env.PORT || 8000;
+app.use(express_1.default.json());
+app.use("/api/v1", customer_1.default);
+app.use("/api/v1", user_1.default);
+app.use("/api/v1", shop_1.default);
+app.use("/api/v1", supplier_1.default);
+app.use("/api/v1", login_1.default);
+app.use("/api/v1", unit_1.default);
+app.use("/api/v1", brand_1.default);
+app.use("/api/v1", category_1.default);
+app.use("/api/v1", product_1.default);
+app.listen(PORT, () => {
+    console.log("Server is Running..");
+});
